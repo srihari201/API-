@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "445874b0-a402-46df-b071-f4e143c8cabf",
+		"name": "Dev:PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36653525",
+		"_collection_link": "https://api-team-3750.postman.co/workspace/API-Team-Workspace~4e8292c3-db1d-4521-ad30-d9867b701c0b/collection/36653525-445874b0-a402-46df-b071-f4e143c8cabf?action=share&source=collection_link&creator=36653525"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomNumber=Math.floor(Math.random()*10000);\r",
+							"var randomStr=\"john\"+Math.random().toString(36).substring(2);\r",
+							"\r",
+							"pm.collectionVariables.set(\"userName\",randomStr);\r",
+							"pm.collectionVariables.set(\"firstName\",randomStr);\r",
+							"pm.collectionVariables.set(\"lastName\",randomStr);\r",
+							"pm.collectionVariables.set(\"email\",randomStr+\"@gmail.com\");\r",
+							"pm.collectionVariables.set(\"password\",randomNumber);\r",
+							"pm.collectionVariables.set(\"phone\",randomNumber);\r",
+							"pm.environment.set(\"petStoreID\",randomNumber)\r",
+							"console.log(pm.environment.get(\"petStoreID\"))\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": {{petStoreID}},\n  \"username\": \"{{userName}}\",\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{lastName}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"phone\": \"{{phone}}\",\n  \"userStatus\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PetStore_URL}}",
+					"host": [
+						"{{PetStore_URL}}"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://petstore.swagger.io/v2/user' \\\r\n  -H 'accept: application/xml' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"id\": 60,\r\n  \"username\": \"John\",\r\n  \"firstName\": \"Tam\",\r\n  \"lastName\": \"lastName\",\r\n  \"email\": \"email@gmail.com\",\r\n  \"password\": \"Password@123\",\r\n  \"phone\": \"8179653479\",\r\n  \"userStatus\": 0\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PetStore_URL}}/{{firstName}}",
+					"host": [
+						"{{PetStore_URL}}"
+					],
+					"path": [
+						"{{firstName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomNumber=Math.floor(Math.random()*10000);\r",
+							"var randomStr=\"john\"+Math.random().toString(36).substring(2);\r",
+							"\r",
+							"pm.collectionVariables.set(\"userName\",randomStr);\r",
+							"pm.collectionVariables.set(\"firstName\",randomStr);\r",
+							"pm.collectionVariables.set(\"lastName\",randomStr);\r",
+							"pm.collectionVariables.set(\"email\",randomStr+\"@gmail.com\");\r",
+							"pm.collectionVariables.set(\"password\",randomNumber);\r",
+							"pm.collectionVariables.set(\"phone\",randomNumber);\r",
+							"pm.environment.set(\"petStoreID\",randomNumber)\r",
+							"console.log(pm.environment.get(\"petStoreID\"))\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{petStoreID}},\r\n  \"username\": \"{{userName}}\",\r\n  \"firstName\": \"{{firstName}}\",\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"phone\": \"{{phone}}\",\r\n  \"userStatus\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PetStore_URL}}/{{firstName}}",
+					"host": [
+						"{{PetStore_URL}}"
+					],
+					"path": [
+						"{{firstName}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{PetStore_URL}}/{{firstName}}",
+					"host": [
+						"{{PetStore_URL}}"
+					],
+					"path": [
+						"{{firstName}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"var statusCode=pm.response.code;\r",
+					"var statusText=pm.response.status;\r",
+					"var contentTypeHeader=pm.response.to.have.header;\r",
+					"var requestMethod=pm.request.method;\r",
+					"var responseSize = pm.response.size().total;\r",
+					"console.log(\"Response Size: \" + responseSize + \" bytes\");\r",
+					"pm.test(\"Response size validation\", () => {\r",
+					"    let responseSizeInBytes = JSON.stringify(pm.response.json()).length;\r",
+					"    pm.expect(responseSize).to.be.within(300, 600);  // Adjust the range as per your requirement\r",
+					"});\r",
+					"\r",
+					"\r",
+					"if(requestMethod===\"POST\"||requestMethod===\"GET\"||requestMethod===\"PUT\"){\r",
+					"    pm.test(\"status code is 200 or 201\",function(){\r",
+					"        pm.expect(statusCode).to.be.oneOf([200,201])\r",
+					"    });\r",
+					"    pm.test(\"status text is 'OK' or 'Created'\",()=>{\r",
+					"        pm.expect(statusText).to.be.oneOf([\"Created\",\"OK\"])\r",
+					"    });\r",
+					"   pm.test(\"if 'Content-Type' header is present\", () => {\r",
+					"    // Retrieve the Content-Type header from the response\r",
+					"    let contentTypeHeader = pm.response.headers.has('Content-Type');\r",
+					"    // Check if the Content-Type header is present\r",
+					"    pm.expect(contentTypeHeader).to.be.true;\r",
+					"});\r",
+					"}\r",
+					"else if (requestMethod === \"DELETE\") {\r",
+					"    pm.test(\"Status code is 200 or 404 for DELETE request\", () => {\r",
+					"        if (pm.response.code === 200) {\r",
+					"            pm.expect(pm.response.code).to.eql(200);\r",
+					"            pm.expect(pm.response.status).to.eql(\"OK\");\r",
+					"        } else if (pm.response.code === 404) {\r",
+					"            pm.expect(pm.response.code).to.eql(404);\r",
+					"            pm.expect(pm.response.status).to.eql(\"Not Found\");\r",
+					"        } else {\r",
+					"            pm.fail(\"Unexpected status code: \" + pm.response.code);\r",
+					"        }\r",
+					"    });\r",
+					"}\r",
+					"\r",
+					"\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userName",
+			"value": ""
+		},
+		{
+			"key": "firstName",
+			"value": ""
+		},
+		{
+			"key": "lastName",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "phone",
+			"value": ""
+		},
+		{
+			"key": "PetStore_URL",
+			"value": "https://petstore.swagger.io/v2/user",
+			"type": "string"
+		}
+	]
+}
